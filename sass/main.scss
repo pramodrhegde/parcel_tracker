@@ -1,0 +1,17 @@
+//Google font
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+$background-color:#2c333d;
+$font-color-base:#ffffff;
+
+html{
+	font-size:62.5%;
+}
+
+body{
+	font-family: 'Montserrat', sans-serif;
+	font-size:1.6rem;
+	font-weight:400;
+	background:$background-color;
+	color:$font-color-base;
+}

@@ -1,0 +1,30 @@
+{
+  "name": "tracker",
+  "description": "parcel tracker online",
+  "main": "index.html",
+  "authors": [
+    "pramod"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "parcel",
+    "tracker",
+    "online",
+    "web",
+    "app"
+  ],
+  "homepage": "https://github.com/pramodrhegde/parcel_tracker",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "bower/",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "foundation-sites": "~6.0.4"
+  }
+}
