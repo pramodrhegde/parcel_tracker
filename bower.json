@@ -25,6 +25,7 @@
     "tests"
   ],
   "devDependencies": {
-    "foundation-sites": "~6.0.4"
+    "foundation-sites": "~6.0.4",
+    "handlebars": "~4.0.5"
   }
 }
