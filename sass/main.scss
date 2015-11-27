@@ -16,10 +16,13 @@ body{
 	background:$background-color;
 	color:$font-color-base;
 }
-.parcel-item{
-	cursor:pointer;
+#parcel-item-container .mix{
+	min-height:500px;
+	display:none;
 }
-
+[class*="parcel-item"]:last-child{
+	float:left!important;
+}
 .reveal{
 	color:$font-color-opp;
 }

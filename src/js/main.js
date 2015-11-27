@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
 	//parcel details
 	$.ajax({
 		type:"GET",
@@ -10,7 +11,10 @@ $(document).ready(function(){
 			var parcelTemplateScript = $('#parcel-template').html();
 			var parcelTemplate = Handlebars.compile(parcelTemplateScript);
 			var parcelHtml = parcelTemplate(data);
-			$('.main > .row').html(parcelHtml).find('div').last().addClass('end');
+			$('.main > .row').html(parcelHtml).find('div').last();
+
+			// Instantiate MixItUp:
+			$('#parcel-item-container').mixItUp();
 
 			$('.parcel-item a').on('click',function(){
 
@@ -44,6 +48,32 @@ $(document).ready(function(){
 			alert('error');
 		}
 	});
+	
+	//sort asc desc switch pending
+	/*var sortHistory;
+	$('button.sort').on('click',function(){
+		var $this = $(this);
+		var sort= $this.data('sort').split(':');
+		if(sortHistory === sort[0]){
+			if(sort[1]==="asc"){
+				$this.data('sort',sort[0]+':desc');
+			}else{
+				$this.data('sort',sort[0]+':asc');
+			}
+		}else{
+			sortHistory = sort[0];
+		}
+	});
+	
+	$('button.sort-type').on('click',function(){
+		var $this = $(this);
+		var type = $this.data('type');
+		$('button.sort').each(function(){
+			$(this).data('sort',$(this).data('sort').split(':')[0]+':'+type);
+		});
+		$this.siblings().prop('disabled',false);
+		$this.prop('disabled',true);
+	});	*/
 
 	//api hits
 	$.ajax({
