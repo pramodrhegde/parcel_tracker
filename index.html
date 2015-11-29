@@ -14,16 +14,22 @@
 	</head>
 	<body>
 		<div class="main">
-			<header class="contain-to-grid clearfix">
-				<a href="#" class="logo float-left">Z-tracker</a>
-				<p class="float-right">Parcels <span class="parcel-count"></span></p>
+			<header>
+				<div class="row">
+					<div class="header-content">
+						<a href="#" class="logo float-left">Z-tracker</a>
+						<a href="#" class="bubble-pop notification float-right">Parcels <span class="parcel-count"></span></a>
+					</div>
+				</div>
 			</header>
-			<div class="contain-to-grid clearfix controls">
-				<p class="float-left">Sort</p>
-				<div class="float-right">
-					<button class="button sort" data-sort="name:asc">Name</button>
-					<button class="button sort" data-sort="weight:asc">Weight</button>
-					<button class="button sort" data-sort="price:asc">Price</button>
+			<div class="row contain-to-grid clearfix controls">
+				<div class="dropdown right float-right">
+					<a href="#" class="button menu">sort by</a>
+					<ul>
+					  <li class="button"><button class="sort" data-sort="name:asc">Name</button></li>
+				      <li class="button"><button class="sort" data-sort="weight:asc">Weight</button></li>
+				      <li class="button"><button class="sort" data-sort="price:asc">Price</button></li>
+					</ul>
 				</div>
 				<!--<button class="sort-type" data-type="asc"disabled="true">Asc</button>
 				<button class="sort-type" data-type="desc">Desc</button>-->
@@ -34,15 +40,7 @@
 			
 			<div class="fake-modal hidden" id="parcel-window">
 			  <div class="fake-modal-wrapper">
-				<div class="fake-modal-header">
-					<a href="#" class="button close-window">Close</a>
-				</div>
-			  	<div>
-				  	<button class="button like-button">Like <span class="like-count"></span></button>
-				  	<a href="#" class="button">share</a>
-				  	<button class="button map-refresh-button">Refresh</button>
-				</div>
-				<div id="map_canvas"></div>
+			  	<a href="#" class="button close-window float-right">X</a>
 			  </div>
 			</div>
 		</div>
@@ -61,8 +59,8 @@
 					<div data-image ="{{image}}" class="parcel-image"><img src="{{image}}"/></div>
 					<h2 data-name="{{name}}">{{name}}</h2>
 					<div class="parcel-info clearfix">
-						<p data-color="{{color}}" class="float-left color-code"style="background:{{color}};"></p>
-						<p data-price="{{price}}" class="float-right">{{price}}</p>
+						<p data-color="{{color}}" class="float-left color-code" style="background:{{color}};"></p>
+						<p data-price="{{price}}" class="float-right price-box"> &#x20b9 {{price}}</p>
 						<p data-type="{{type}}"></p>
 						<p data-weight="{{weight}}"></p>
 						<p data-qty="{{quantity}}"></p>
@@ -77,18 +75,24 @@
 		<script id="modal-template" type="text/x-handlebars-template">
 			<div class="product-info" data-uid="{{color}}">
 			  <h2>{{name}}</h2>
+			  <span class="color-code" style="background:{{color}}"></span>
 			  <div class="row">
-			  	  <div class="small-12 medium-6 medium-push-6 large-6 large-push-6 columns">
-				  	<p><img src="{{image}}" alt="product-image"/></p>
+				  <div class="small-12 medium-6 large-6 columns">
+				  	<div class="window-img"><img src="{{image}}" alt="product-image"/></div>
+				  	<!--<p>{{date}}</p>-->
+				  	<p><span>category</span> {{type}}</p>
+				  	<p><span>price</span> &#x20b9 {{price}}</p>
+				  	<p><span>weight</span> {{weight}}</p>
+				  	<p><span>quantity</span> {{quantity}}</p>
+				  	<p><span>contact</span> {{phone}}</p>
 				  </div>
-				  <div class="small-12 medium-6 medium-pull-6 large-6 large-pull-6 columns">
-				  	<p>{{date}}</p>
-				  	<p>{{type}}</p>
-				  	<p>{{price}}</p>
-				  	<p>{{weight}}</p>
-				  	<p>{{quantity}}</p>
-				  	<p>{{phone}}</p>
-				  	<p style="width:20px;height:20px;background:{{color}};"></p>
+				  <div class="small-12 medium-6 large-6 columns">
+				  	<div>
+					  	<a class="bubble-pop green button like-button">Like <span class="like-count"></span></a>
+					  	<!--<a href="#" class="button">share</a>-->
+					  	<button class="button map-refresh-button">Refresh</button>
+					</div>
+				  	<div id="map_canvas"></div>
 				  </div>
 			  </div>
 			</div>

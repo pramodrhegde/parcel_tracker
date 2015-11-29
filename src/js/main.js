@@ -38,11 +38,39 @@ $(document).ready(function(){
 				var modalHtml = modalTemplate(templateData);
 				$('.product-info').remove();
 				$('#parcel-window > .fake-modal-wrapper').prepend(modalHtml);
+
+				//Like button click - Local Storage
+				$('.like-button').on('click',function(){
+					var $this = $(this);
+					var count=1;
+					var key = $this.parents('#parcel-window').find('.product-info').data('uid');
+					if(localStorage[key]){
+						count += parseInt(localStorage[key]);
+						localStorage[key] = count;
+					}else{
+						localStorage[key] = count;
+					}
+					$this.find('span.like-count').text(count);
+				});
+
+				//Map Refresh button click
+				$('.map-refresh-button').on('click',function(){
+					var $this = $(this);
+					var uid = $this.parents('#parcel-window').find('.product-info').data('uid');
+					getCoordinates(uid);
+				});
 				//$('#parcel-window').foundation('reveal','open');
 				$('#map_canvas').empty();
 				getCoordinates($this.parents('.parcel-item').data('uid'));
 				
-				$('#parcel-window span.like-count').text(getLikeCount($this.parents('.parcel-item').data('uid')));
+				//Like Count Init
+				var likes = getLikeCount($this.parents('.parcel-item').data('uid'));
+				if(likes){
+					$('#parcel-window span.like-count').text(likes);
+				}else{
+					$('#parcel-window span.like-count').text(0);
+				}
+				
 				$('#parcel-window').toggleClass('hidden');
 				$('html').toggleClass('noscroll');
 			});
@@ -52,25 +80,14 @@ $(document).ready(function(){
 		}
 	});
 	
-	//Like button click - Local Storage
-	$('.like-button').on('click',function(){
-		var $this = $(this);
-		var count=1;
-		var key = $this.parents('#parcel-window').find('.product-info').data('uid');
-		if(localStorage[key]){
-			count += parseInt(localStorage[key]);
-			localStorage[key] = count;
-		}else{
-			localStorage[key] = count;
-		}
-		$this.find('span.like-count').text(count);
+	$('.dropdown a').on('click',function(e){
+		$(this).next('ul').slideToggle();
+		e.stopPropagation();
 	});
-
-	//Map Refresh button click
-	$('.map-refresh-button').on('click',function(){
-		var $this = $(this);
-		var uid = $this.parents('#parcel-window').find('.product-info').data('uid');
-		getCoordinates(uid);
+	$('html').on('click',function(){
+		if($('.dropdown ul').is(':visible')){
+			$('.dropdown ul').slideToggle();
+		}
 	});
 	//sort asc desc switch pending
 	/*var sortHistory;
@@ -146,10 +163,9 @@ function getCoordinates(uid){
 }
 
 function createMap(lat,lng){
-	latlng = new google.maps.LatLng(lat, lng),
-    image = 'http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png';
-    var infowindow = new google.maps.InfoWindow();
-    var mapOptions = {
+	var latlng = new google.maps.LatLng(lat, lng),
+        image = 'http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png',
+        mapOptions = {
              center: new google.maps.LatLng(lat, lng),
              zoom: 13,
              mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -162,13 +178,19 @@ function createMap(lat,lng){
                  style: google.maps.ZoomControlStyle.LARGE,
                  position: google.maps.ControlPosition.TOP_left
              }
-         },
+         };
         map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions),
         marker = new google.maps.Marker({
                  position: latlng,
                  map: map,
                  icon: image
              });
+
+        
+        //marker.setIcon(image);
+		//marker.setPosition(latlng);
+	    //infowindow.setContent(placeName);
+	var infowindow = new google.maps.InfoWindow();
 
     google.maps.event.addListener(map, 'click', function (event) {
          infowindow.close();
