@@ -101,8 +101,12 @@ $(document).ready(function(){
 	$('#parcel-window').on('click',function(){
 		if($(this).is(':visible')){
 			$(this).toggleClass('hidden');
-			$('html').toggleClass('noscroll')
+			$('html').toggleClass('noscroll');
 		}
+	});
+	$('a.close-window').on('click',function(){
+		$(this).parents('#parcel-window').toggleClass('hidden');
+		$('html').toggleClass('noscroll');
 	});
 	$('.fake-modal-wrapper').on('click',function(e){
 		e.stopPropagation();
