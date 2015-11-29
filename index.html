@@ -14,11 +14,25 @@
 	</head>
 	<body>
 		<div class="main">
-			<header class="clearfix">
+			<div class="fake-modal" style="display:none;">
+				<div>
+					<p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis recusandae at consequatur similique cupiditate ipsum, numquam deleniti nostrum iusto consequuntur facere praesentium debitis commodi ducimus facilis. Excepturi fuga exercitationem ea.</span>
+					<span>Dicta quos voluptates ipsum, suscipit eveniet, labore esse ratione quaerat voluptas, eos quasi. Sint natus recusandae id accusamus culpa perspiciatis pariatur, inventore debitis ad, reiciendis, itaque voluptates, doloribus delectus mollitia.</span>
+					<span>Ex non eveniet, dolore quisquam. Repudiandae voluptates dolores vitae? Dolor recusandae, eum unde, voluptas at quia, ullam deleniti nulla odit, nisi esse perspiciatis aperiam voluptate quidem mollitia ad facere assumenda.</span>
+					<span>Culpa nam adipisci quis, aspernatur, modi magnam nesciunt saepe aliquid? Corrupti similique sit voluptates porro vitae assumenda ea totam, pariatur ad, itaque, adipisci id cum, expedita labore illo. Amet, autem.</span>
+					<span>Beatae maxime porro adipisci, ea sequi totam eligendi quae soluta placeat. Dignissimos voluptatum, autem rerum cumque natus voluptatibus quae enim eveniet, iste ducimus, magni. Magnam molestiae praesentium vel autem fuga!</span>
+					<span>Perspiciatis ipsum quae repellendus dolore voluptatem quo fugiat dignissimos iure aliquid similique at distinctio, expedita autem sed tempora sint quasi aperiam odit enim dolores earum officiis. Rem nostrum nemo vero.</span>
+					<span>In necessitatibus at ratione vero esse, eaque, magnam optio beatae laudantium id. Iste, quae, distinctio! Assumenda nemo deleniti laborum dolore iste possimus tempora necessitatibus explicabo, perspiciatis commodi praesentium, animi, reiciendis.</span>
+					<span>Quidem alias, aut, cumque, quod quos distinctio nulla, doloribus reiciendis tenetur ratione voluptatum rem nam minima labore iste consequuntur nisi et. Odio quod, mollitia possimus natus sequi ut nam quo!</span>
+					<span>Veniam blanditiis iure officiis omnis eaque ab, asperiores minus ut, accusamus quod quis ad at excepturi. Recusandae cum, nobis sunt ipsum quisquam facilis tenetur eligendi! Perferendis minus nostrum, molestiae delectus.</span>
+					<span>Blanditiis ab fuga rerum quos sunt molestiae similique temporibus voluptate laboriosam deserunt ut dolore nobis incidunt repudiandae consectetur sint asperiores, assumenda ratione esse ipsa, quis nisi, unde voluptatem labore. Et.</span></p>
+				</div>
+			</div>
+			<header class="contain-to-grid clearfix">
 				<a href="#" class="logo float-left">Logo</a>
 				<p class="float-right">Parcels <span class="parcel-count"></span></p>
 			</header>
-			<div class="clearfix controls">
+			<div class="contain-to-grid clearfix controls">
 				<p class="float-left">Sort</p>
 				<div class="float-right">
 					<button class="button sort" data-sort="name:asc">Name</button>
@@ -32,13 +46,14 @@
 				<div class="row" id="parcel-item-container"></div>
 			</section>
 			
-			<div class="large reveal" id="exampleModal1" data-reveal>
-			  <div>
-			  	<button class="like-button">Like <span class="like-count"></span></button>
-			  	<a href="#">share</a>
-			  	<button class="map-refresh-button">Refresh</button>
-			  </div>
-			  <div id="map_canvas">
+			<div class="fake-modal hidden" id="parcel-window">
+			  <div class="fake-modal-wrapper">
+			  	<div>
+				  	<button class="like-button">Like <span class="like-count"></span></button>
+				  	<a href="#">share</a>
+				  	<button class="map-refresh-button">Refresh</button>
+				</div>
+				<div id="map_canvas"></div>
 			  </div>
 			</div>
 		</div>
@@ -53,8 +68,9 @@
 		<script id="parcel-template" type="text/x-handlebars-template">
 			{{#parcels}}
 				<div class="small-12 medium-4 large-3 columns mix parcel-item" data-uid="{{color}}" data-name="{{name}}" data-price="{{price}}" data-weight="{{weight}}">
-					<h2 data-name="{{name}}">{{name}}</h2>
+					<div class="parcel-content">
 					<div data-image ="{{image}}" class="parcel-image"><img src="{{image}}"/></div>
+					<h2 data-name="{{name}}">{{name}}</h2>
 					<div class="parcel-info clearfix">
 						<p data-color="{{color}}" class="float-left color-code"style="background:{{color}};"></p>
 						<p data-price="{{price}}" class="float-right">{{price}}</p>
@@ -64,7 +80,8 @@
 						<p data-date="{{date}}"></p>
 						<p data-phone="{{phone}}"></p>
 					</div>
-					<a href="#" class="track-button" data-open='exampleModal1'>Track</a>
+					<a href="#" class="track-button" data-open='parcel-window'>Track</a>
+					</div>
 				</div>
 			{{/parcels}}
 		</script>

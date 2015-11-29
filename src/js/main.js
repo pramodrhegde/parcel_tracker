@@ -22,7 +22,7 @@ $(document).ready(function(){
 				var modalTemplate = Handlebars.compile(modalTemplateScript);
 				
 				var $this = $(this),
-				    data = $this.parent('.parcel-item'),
+				    data = $this.parents('.parcel-item'),
 					templateData = {
 					    name : data.find('h2[data-name]').data('name'),
 					    date : data.find('p[data-date]').data('date'),
@@ -37,12 +37,14 @@ $(document).ready(function(){
 
 				var modalHtml = modalTemplate(templateData);
 				$('.product-info').remove();
-				$('#exampleModal1').prepend(modalHtml);
-				//$('#exampleModal1').foundation('reveal','open');
+				$('#parcel-window > .fake-modal-wrapper').prepend(modalHtml);
+				//$('#parcel-window').foundation('reveal','open');
 				$('#map_canvas').empty();
-				getCoordinates($this.parent('.parcel-item').data('uid'));
+				getCoordinates($this.parents('.parcel-item').data('uid'));
 				
-				$('#exampleModal1 span.like-count').text(getLikeCount($this.parent('.parcel-item').data('uid')));
+				$('#parcel-window span.like-count').text(getLikeCount($this.parents('.parcel-item').data('uid')));
+				$('#parcel-window').toggleClass('hidden');
+				$('html').toggleClass('noscroll');
 			});
 		},
 		error:function(xhr,status,error){
@@ -54,7 +56,7 @@ $(document).ready(function(){
 	$('.like-button').on('click',function(){
 		var $this = $(this);
 		var count=1;
-		var key = $this.parents('#exampleModal1').find('.product-info').data('uid');
+		var key = $this.parents('#parcel-window').find('.product-info').data('uid');
 		if(localStorage[key]){
 			count += parseInt(localStorage[key]);
 			localStorage[key] = count;
@@ -67,7 +69,7 @@ $(document).ready(function(){
 	//Map Refresh button click
 	$('.map-refresh-button').on('click',function(){
 		var $this = $(this);
-		var uid = $this.parents('#exampleModal1').find('.product-info').data('uid');
+		var uid = $this.parents('#parcel-window').find('.product-info').data('uid');
 		getCoordinates(uid);
 	});
 	//sort asc desc switch pending
@@ -95,7 +97,16 @@ $(document).ready(function(){
 		$this.siblings().prop('disabled',false);
 		$this.prop('disabled',true);
 	});	*/
-
+	
+	$('#parcel-window').on('click',function(){
+		if($(this).is(':visible')){
+			$(this).toggleClass('hidden');
+			$('html').toggleClass('noscroll')
+		}
+	});
+	$('.fake-modal-wrapper').on('click',function(e){
+		e.stopPropagation();
+	});
 	//api hits
 	$.ajax({
 		type:"GET",
@@ -133,7 +144,7 @@ function getCoordinates(uid){
 function createMap(lat,lng){
 	latlng = new google.maps.LatLng(lat, lng),
     image = 'http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png';
-    
+    var infowindow = new google.maps.InfoWindow();
     var mapOptions = {
              center: new google.maps.LatLng(lat, lng),
              zoom: 13,
@@ -169,16 +180,16 @@ function createMap(lat,lng){
                      placeName = results[0].address_components[0].long_name,
                      latlng = new google.maps.LatLng(lat, lng);
 
-                 moveMarker(placeName, latlng);
+                 marker.setIcon(image);
+			     marker.setPosition(latlng);
+			     infowindow.setContent(placeName);
              }
          });
     });
 }
 
 function moveMarker(placeName, latlng) {
-     marker.setIcon(image);
-     marker.setPosition(latlng);
-     infowindow.setContent(placeName);
+     
      //infowindow.open(map, marker);
  }
 

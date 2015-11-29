@@ -1,11 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
-html {
-  font-size: 100%;
-}
-
 body {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.6rem;
+  font-size: 16px;
   font-weight: 400;
   background: #2c333d;
   color: #ffffff;
@@ -13,6 +9,10 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
+}
+
+h2 {
+  font-size: 1.8rem;
 }
 
 img {
@@ -45,13 +45,57 @@ header {
   margin: 5px 0px;
 }
 
+.parcel-content {
+  margin: 0px 5px;
+  position: relative;
+  height: inherit;
+  background: #ffffff;
+}
+
+.parcel-content h2 {
+  font-size: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 0;
+  padding: 10px 5px;
+}
+
+.parcel-content h2:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #eee;
+  opacity: 0.95;
+  z-index: -1;
+}
+
 .parcel-image {
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  z-index: -1;
+}
+
+.parcel-image:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000000;
+  opacity: 0.15;
+}
+
+.parcel-info {
+  position: absolute;
+  bottom: 50px;
   width: 100%;
 }
 
@@ -62,16 +106,16 @@ header {
 
 .track-button {
   position: absolute;
-  left: 0;
   bottom: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
   height: 50px;
   background: #6abd19;
   color: #ffffff;
 }
 
 #parcel-item-container .mix {
-  height: 220px;
+  height: 250px;
   display: none;
 }
 
@@ -86,6 +130,33 @@ header {
 #map_canvas {
   width: 100%;
   height: 500px;
-  margin: 15px 10px;
-  position: relative;
+  margin-bottom: 45px;
+}
+
+.fake-modal {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background: treansparent;
+}
+
+.fake-modal-wrapper {
+  overflow: auto;
+  height: 100vh;
+  max-width: 75rem;
+  margin: 0px auto;
+  background: #fff;
+  color: #000;
+  padding: 25px 10px;
+}
+
+.noscroll {
+  overflow: hidden;
+}
+
+.hidden {
+  display: none;
 }
