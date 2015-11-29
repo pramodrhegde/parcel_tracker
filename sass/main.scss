@@ -155,12 +155,24 @@ header{
 	right:-10px;
 	padding-top:5px;
 }
+.info-bar{
+	margin-bottom:10px;
+	color:#555;
+}
+.info-bar > span{
+	display:inline-block;
+	width:40%;
+	color:#000;
+}
 .price-box{
 	margin:10px 5px 0px 5px;;
 	padding:0px 5px;
 	color:$font-color-base;
 	font-size:14px;
 	background:#2199e8;
+}
+.like-button{
+	margin-left:0px;
 }
 .track-button{
 	position:absolute;

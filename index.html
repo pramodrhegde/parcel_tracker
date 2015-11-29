@@ -74,17 +74,17 @@
 		</script>
 		<script id="modal-template" type="text/x-handlebars-template">
 			<div class="product-info" data-uid="{{color}}">
-			  <h2>{{name}}</h2>
-			  <span class="color-code" style="background:{{color}}"></span>
 			  <div class="row">
 				  <div class="small-12 medium-6 large-6 columns">
+				  	<h2>{{name}}</h2>
+			  		<span class="color-code" style="background:{{color}}"></span>
 				  	<div class="window-img"><img src="{{image}}" alt="product-image"/></div>
 				  	<!--<p>{{date}}</p>-->
-				  	<p><span>category</span> {{type}}</p>
-				  	<p><span>price</span> &#x20b9 {{price}}</p>
-				  	<p><span>weight</span> {{weight}}</p>
-				  	<p><span>quantity</span> {{quantity}}</p>
-				  	<p><span>contact</span> {{phone}}</p>
+				  	<p class="info-bar"><span>category</span> {{type}}</p>
+				  	<p class="info-bar"><span>price</span> &#x20b9 {{price}}</p>
+				  	<p class="info-bar"><span>weight</span> {{weight}}</p>
+				  	<p class="info-bar"><span>quantity</span> {{quantity}}</p>
+				  	<p class="info-bar"><span>contact</span> {{phone}}</p>
 				  </div>
 				  <div class="small-12 medium-6 large-6 columns">
 				  	<div>
