@@ -7,11 +7,11 @@ $(document).ready(function(){
 		cache:false,
 		dataType:"json",
 		success:function(data){
-			console.log('success');
+			$('span.parcel-count').text(data.parcels.length);
 			var parcelTemplateScript = $('#parcel-template').html();
 			var parcelTemplate = Handlebars.compile(parcelTemplateScript);
 			var parcelHtml = parcelTemplate(data);
-			$('.main > .row').html(parcelHtml).find('div').last();
+			$('section > .row').html(parcelHtml).find('div').last();
 
 			// Instantiate MixItUp:
 			$('#parcel-item-container').mixItUp();
@@ -24,13 +24,13 @@ $(document).ready(function(){
 				var $this = $(this),
 				    data = $this.parent('.parcel-item'),
 					templateData = {
-					    name : data.find('p[data-name]').data('name'),
+					    name : data.find('h2[data-name]').data('name'),
 					    date : data.find('p[data-date]').data('date'),
 					    type : data.find('p[data-type]').data('type'),
 					    weight : data.find('p[data-weight]').data('weight'),
 					    price : data.find('p[data-price]').data('price'),
 					    quantity : data.find('p[data-qty]').data('qty'),
-					    image : data.find('p[data-image]').data('image'),
+					    image : data.find('.parcel-image[data-image]').data('image'),
 					    color : data.find('p[data-color]').data('color'),
 					    phone : data.find('p[data-phone]').data('phone')
 					};
@@ -42,6 +42,7 @@ $(document).ready(function(){
 				$('#map_canvas').empty();
 				getCoordinates($this.parent('.parcel-item').data('uid'));
 				
+				$('#exampleModal1 span.like-count').text(getLikeCount($this.parent('.parcel-item').data('uid')));
 			});
 		},
 		error:function(xhr,status,error){
@@ -49,6 +50,26 @@ $(document).ready(function(){
 		}
 	});
 	
+	//Like button click - Local Storage
+	$('.like-button').on('click',function(){
+		var $this = $(this);
+		var count=1;
+		var key = $this.parents('#exampleModal1').find('.product-info').data('uid');
+		if(localStorage[key]){
+			count += parseInt(localStorage[key]);
+			localStorage[key] = count;
+		}else{
+			localStorage[key] = count;
+		}
+		$this.find('span.like-count').text(count);
+	});
+
+	//Map Refresh button click
+	$('.map-refresh-button').on('click',function(){
+		var $this = $(this);
+		var uid = $this.parents('#exampleModal1').find('.product-info').data('uid');
+		getCoordinates(uid);
+	});
 	//sort asc desc switch pending
 	/*var sortHistory;
 	$('button.sort').on('click',function(){
@@ -159,4 +180,12 @@ function moveMarker(placeName, latlng) {
      marker.setPosition(latlng);
      infowindow.setContent(placeName);
      //infowindow.open(map, marker);
+ }
+
+ function getLikeCount(uid){
+ 	if(localStorage[uid]){
+ 		return localStorage[uid];
+ 	}else{
+ 		return null;
+ 	}
  }

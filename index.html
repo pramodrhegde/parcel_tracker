@@ -14,19 +14,32 @@
 	</head>
 	<body>
 		<div class="main">
-			<div class="controls">
-				<p>Sort By :</p>
-				<button class="sort" data-sort="name:asc">Name</button>
-				<button class="sort" data-sort="weight:asc">Weight</button>
-				<button class="sort" data-sort="price:asc">Price</button>
-
+			<header class="clearfix">
+				<a href="#" class="logo float-left">Logo</a>
+				<p class="float-right">Parcels <span class="parcel-count"></span></p>
+			</header>
+			<div class="clearfix controls">
+				<p class="float-left">Sort</p>
+				<div class="float-right">
+					<button class="button sort" data-sort="name:asc">Name</button>
+					<button class="button sort" data-sort="weight:asc">Weight</button>
+					<button class="button sort" data-sort="price:asc">Price</button>
+				</div>
 				<!--<button class="sort-type" data-type="asc"disabled="true">Asc</button>
 				<button class="sort-type" data-type="desc">Desc</button>-->
 			</div>
-			<div class="row" id="parcel-item-container"></div>
-
+			<section>
+				<div class="row" id="parcel-item-container"></div>
+			</section>
+			
 			<div class="large reveal" id="exampleModal1" data-reveal>
-			  <div id="map_canvas"></div>
+			  <div>
+			  	<button class="like-button">Like <span class="like-count"></span></button>
+			  	<a href="#">share</a>
+			  	<button class="map-refresh-button">Refresh</button>
+			  </div>
+			  <div id="map_canvas">
+			  </div>
 			</div>
 		</div>
 		<!--Google Map API -->
@@ -40,21 +53,23 @@
 		<script id="parcel-template" type="text/x-handlebars-template">
 			{{#parcels}}
 				<div class="small-12 medium-4 large-3 columns mix parcel-item" data-uid="{{color}}" data-name="{{name}}" data-price="{{price}}" data-weight="{{weight}}">
-					<p data-name="{{name}}">{{name}}</p>
-					<p data-image ="{{image}}"><img src="{{image}}"/></p>
-					<p data-type="{{type}}">{{type}}</p>
-					<p data-weight="{{weight}}">{{weight}}</p>
-					<p data-price="{{price}}">{{price}}</p>
-					<p data-qty="{{quantity}}">{{quantity}}</p>
-					<p data-color="{{color}}" style="width:20px;height:20px;background:{{color}};"></p>
-					<p data-date="{{date}}"></p>
-					<p data-phone="{{phone}}"></p>
-					<a href="#" data-open='exampleModal1'>Track</a>
+					<h2 data-name="{{name}}">{{name}}</h2>
+					<div data-image ="{{image}}" class="parcel-image"><img src="{{image}}"/></div>
+					<div class="parcel-info clearfix">
+						<p data-color="{{color}}" class="float-left color-code"style="background:{{color}};"></p>
+						<p data-price="{{price}}" class="float-right">{{price}}</p>
+						<p data-type="{{type}}"></p>
+						<p data-weight="{{weight}}"></p>
+						<p data-qty="{{quantity}}"></p>
+						<p data-date="{{date}}"></p>
+						<p data-phone="{{phone}}"></p>
+					</div>
+					<a href="#" class="track-button" data-open='exampleModal1'>Track</a>
 				</div>
 			{{/parcels}}
 		</script>
 		<script id="modal-template" type="text/x-handlebars-template">
-			<div class="product-info">
+			<div class="product-info" data-uid="{{color}}">
 			  <h2>{{name}}</h2>
 			  <div class="row">
 			  	  <div class="small-12 medium-6 medium-push-6 large-6 large-push-6 columns">

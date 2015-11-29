@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 html {
-  font-size: 62.5%;
+  font-size: 100%;
 }
 
 body {
@@ -11,8 +11,67 @@ body {
   color: #ffffff;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+section {
+  padding: 10px;
+}
+
+header {
+  width: 100%;
+  height: 60px;
+  background: #6abd19;
+}
+
+.controls {
+  padding: 10px 10px;
+}
+
+.button {
+  margin: 5px;
+}
+
+.parcel-item {
+  position: relative;
+  text-align: center;
+  color: #000000;
+  margin: 5px 0px;
+}
+
+.parcel-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  width: 100%;
+}
+
+.color-code {
+  width: 20px;
+  height: 20px;
+}
+
+.track-button {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  background: #6abd19;
+  color: #ffffff;
+}
+
 #parcel-item-container .mix {
-  min-height: 500px;
+  height: 220px;
   display: none;
 }
 
@@ -28,4 +87,5 @@ body {
   width: 100%;
   height: 500px;
   margin: 15px 10px;
+  position: relative;
 }

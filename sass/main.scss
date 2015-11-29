@@ -1,25 +1,77 @@
 //Google font
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-$background-color:#2c333d;
+$background-color-primary:#2c333d;
+$background-color-secondary:#6abd19;
 $font-color-base:#ffffff;
 $font-color-opp:#000000;
 
 html{
-	font-size:62.5%;
+	font-size:100%;
 }
 
 body{
 	font-family: 'Montserrat', sans-serif;
 	font-size:1.6rem;
 	font-weight:400;
-	background:$background-color;
+	background:$background-color-primary;
+	color:$font-color-base;
+}
+h1,h2,h3,h4,h5,h6{
+	font-family:'Montserrat', sans-serif;
+}
+
+img{
+	max-width:100%;
+	max-height:100%;
+}
+section{
+	padding:10px;
+}
+header{
+	width:100%;
+	height:60px;
+	background:$background-color-secondary;
+}
+.controls{
+	padding:10px 10px;
+}
+.button{
+	margin:5px;
+}
+.parcel-item{
+	position:relative;
+	text-align:center;
+	color:$font-color-opp;
+	margin:5px 0px;
+}
+.parcel-image{
+	position:absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	z-index:-1;
+	width:100%;
+}
+.color-code{
+	width:20px;
+	height:20px;
+}
+.track-button{
+	position:absolute;
+	left:0;
+	bottom:0;
+	width:100%;
+	height:50px;
+	background:$background-color-secondary;
 	color:$font-color-base;
 }
 #parcel-item-container .mix{
-	min-height:500px;
+	height:220px;
 	display:none;
 }
+
 [class*="parcel-item"]:last-child{
 	float:left!important;
 }
@@ -31,4 +83,5 @@ body{
   width:100%;
   height:500px;
   margin:15px 10px;
+  position:relative;
 }
