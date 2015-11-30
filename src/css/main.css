@@ -15,20 +15,39 @@ h2 {
   font-size: 1.8rem;
 }
 
+input:focus, button:focus {
+  outline: none;
+}
+
 img {
   max-width: 100%;
   max-height: 100%;
 }
 
+a:hover {
+  color: #2c333d;
+  transition: all 0.33s cubic-bezier(0.125, 0.75, 0.415, 1);
+}
+
 header {
   width: 100%;
-  height: 60px;
+  height: 70px;
   background: #6abd19;
+}
+@media screen and (min-width: 640px) {
+  header {
+    height: 90px;
+  }
 }
 
 .header-content {
-  height: 60px;
+  height: 70px;
   padding: 5px 15px;
+}
+@media screen and (min-width: 640px) {
+  .header-content {
+    height: 90px;
+  }
 }
 
 .logo, .notification {
@@ -38,7 +57,21 @@ header {
 
 .logo {
   display: inline-block;
-  height: 60px;
+  height: 70px;
+}
+@media screen and (min-width: 640px) {
+  .logo {
+    height: 90px;
+  }
+}
+
+.notification {
+  margin-top: 10px;
+}
+@media screen and (min-width: 640px) {
+  .notification {
+    margin-top: 20px;
+  }
 }
 
 .dropdown {
@@ -234,12 +267,17 @@ header {
 
 .fake-modal {
   position: fixed;
-  top: 60px;
+  top: 70px;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 0;
   background: treansparent;
+}
+@media screen and (min-width: 640px) {
+  .fake-modal {
+    top: 90px;
+  }
 }
 
 .fake-modal-wrapper {
@@ -281,9 +319,14 @@ header {
 
 a.close-window {
   position: fixed;
-  top: 62px;
+  top: 72px;
   right: 2px;
   opacity: 0.8;
+}
+@media screen and (min-width: 640px) {
+  a.close-window {
+    top: 92px;
+  }
 }
 
 .noscroll {
