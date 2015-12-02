@@ -43,7 +43,7 @@ header {
 section {
   margin-top: -15px;
 }
-@media screen and (min-width: 370px) {
+@media screen and (min-width: 400px) {
   section {
     margin-top: 0px;
   }
@@ -98,7 +98,7 @@ section {
   color: #000000;
   width: 100%;
 }
-@media screen and (min-width: 370px) {
+@media screen and (min-width: 400px) {
   .search-box input {
     margin: 5px 5px 5px 0px;
   }
