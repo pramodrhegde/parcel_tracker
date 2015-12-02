@@ -94,7 +94,7 @@ $(document).ready(function(){
 		var $this = $(this);
 		var query = $this.val();
 
-		searchParcels(query);
+		searchParcels(query.toLowerCase());
 	});	
 	//sort asc desc switch pending
 	/*var sortHistory;
