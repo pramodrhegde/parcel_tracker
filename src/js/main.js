@@ -238,8 +238,8 @@ function moveMarker(placeName, latlng) {
  	var searchSet = $('#parcel-item-container .parcel-item');
 
  	searchSet.each(function(index){
- 		var name = $(this).data('name');
- 		var weight = $(this).data('weight');
+ 		var name = $(this).data('name').toString();
+ 		var weight = $(this).data('weight').toString();
  		var price = $(this).data('price').toString();
 
  		if(name.toLowerCase().indexOf(query) != -1 || weight.toLowerCase().indexOf(query) != -1 || price.toLowerCase().indexOf(query) != -1 ){
