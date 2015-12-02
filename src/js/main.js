@@ -89,6 +89,13 @@ $(document).ready(function(){
 			$('.dropdown ul').slideToggle();
 		}
 	});
+
+	$('#search-input').on('keyup',function(e){
+		var $this = $(this);
+		var query = $this.val();
+
+		searchParcels(query);
+	});	
 	//sort asc desc switch pending
 	/*var sortHistory;
 	$('button.sort').on('click',function(){
@@ -225,4 +232,20 @@ function moveMarker(placeName, latlng) {
  	}else{
  		return null;
  	}
+ }
+
+ function searchParcels(query){
+ 	var searchSet = $('#parcel-item-container .parcel-item');
+
+ 	searchSet.each(function(index){
+ 		var name = $(this).data('name');
+ 		var weight = $(this).data('weight');
+ 		var price = $(this).data('price').toString();
+
+ 		if(name.toLowerCase().indexOf(query) != -1 || weight.toLowerCase().indexOf(query) != -1 || price.toLowerCase().indexOf(query) != -1 ){
+ 			$(this).fadeIn(400);
+ 		}else{
+ 			$(this).fadeOut(400);
+ 		}
+ 	});
  }

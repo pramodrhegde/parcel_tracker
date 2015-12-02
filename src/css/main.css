@@ -40,6 +40,15 @@ header {
   }
 }
 
+section {
+  margin-top: -15px;
+}
+@media screen and (min-width: 370px) {
+  section {
+    margin-top: 0px;
+  }
+}
+
 .header-content {
   height: 70px;
   padding: 5px 15px;
@@ -71,6 +80,27 @@ header {
 @media screen and (min-width: 640px) {
   .notification {
     margin-top: 20px;
+  }
+}
+
+.search-box {
+  width: 100%;
+}
+@media screen and (min-width: 640px) {
+  .search-box {
+    width: 50%;
+  }
+}
+
+.search-box input {
+  margin: 5px 5px 10px 0px;
+  border: none;
+  color: #000000;
+  width: 100%;
+}
+@media screen and (min-width: 370px) {
+  .search-box input {
+    margin: 5px 5px 5px 0px;
   }
 }
 
@@ -110,7 +140,7 @@ header {
 }
 
 .controls {
-  padding: 10px 20px;
+  padding: 20px 20px;
 }
 
 .button {
