@@ -59,8 +59,8 @@ $(document).ready(function(){
 					var uid = $this.parents('#parcel-window').find('.product-info').data('uid');
 					getCoordinates(uid);
 				});
-				//$('#parcel-window').foundation('reveal','open');
-				$('#map_canvas').empty();
+
+				//$('#map_canvas').empty();
 				getCoordinates($this.parents('.parcel-item').data('uid'));
 				
 				//Like Count Init
@@ -151,12 +151,14 @@ $(document).ready(function(){
 });
 
 function getCoordinates(uid){
+	$('.map-loader').css({'display':'table'});
 	$.ajax({
 		type:"GET",
 		url:"http://zoomcar-ui.0x10.info/api/courier?type=json&query=list_parcel",
 		cache:false,
 		dataType:"json",
 		success:function(data){
+			$('.map-loader').css({'display':'none'});
 			for(var i=0;i<data.parcels.length;i++){
 				if(data.parcels[i].color===uid){
 					createMap(data.parcels[i].live_location.latitude,data.parcels[i].live_location.longitude);
@@ -165,6 +167,7 @@ function getCoordinates(uid){
 			}
 		},
 		error:function(xhr,status,error){
+			$('.map-loader').css({'display':'none'});
 		}
 	});
 }
