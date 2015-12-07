@@ -33,17 +33,17 @@
 			<header>
 				<div class="row">
 					<div class="header-content">
-						<a href="#" class="logo float-left"><img src="src/images/logo.png" alt="Z-tracker"/></a>
+						<a href="#" class="logo float-left"><img src="src/images/logo.png" srcset="src/images/logo-mobile.png 320w" alt="Z-tracker"/></a>
 						<a href="#" class="bubble-pop notification float-right">Parcels <span class="parcel-count"></span></a>
 					</div>
 				</div>
 			</header>
-			<div class="row contain-to-grid clearfix controls">
+			<div class="row contain-to-grid clearfix controls hidden">
 				<div class="search-box float-left">
 					<input type="text" id="search-input" placeholder="Search by name,weight,price.">
 				</div>
 				<div class="dropdown right float-right">
-					<a href="#" class="button menu">sort by</a>
+					<a href="#" class="button">sort by <i class="fa fa-caret-down"></i></a>
 					<ul>
 					  <li class="button"><button class="sort" data-sort="name:asc">Name</button></li>
 				      <li class="button"><button class="sort" data-sort="weight:asc">Weight</button></li>
@@ -54,7 +54,23 @@
 				<button class="sort-type" data-type="desc">Desc</button>-->
 			</div>
 			<section>
+				<div class="page-loader">
+					<p>Fetching parcel items please wait...</p>
+	  				<div class="loader">
+	  				   <span></span>
+			           <span></span>
+			           <span></span>
+			           <span></span>
+	  				</div>
+				</div>
 				<div class="row" id="parcel-item-container"></div>
+				<div class="no-results" style="display:none;">
+					<p><i class="fa fa-2x fa-info-circle"></i> sorry no such results.</p>
+				</div>
+				<div class="error-page hidden">
+					<p>Something went wrong try to refresh the page...</p>
+        			<p class="error-pic"><i class="fa fa-5x fa-bug"></i></p>
+				</div>
 			</section>
 			
 			<div class="fake-modal hidden" id="parcel-window">

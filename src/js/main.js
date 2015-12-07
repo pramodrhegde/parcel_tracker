@@ -11,6 +11,8 @@ $(document).ready(function(){
 			var parcelTemplateScript = $('#parcel-template').html();
 			var parcelTemplate = Handlebars.compile(parcelTemplateScript);
 			var parcelHtml = parcelTemplate(data);
+			$('.page-loader').addClass('hidden');
+			$('.controls').removeClass('hidden');
 			$('section > .row').html(parcelHtml).find('div').last();
 
 			// Instantiate MixItUp:
@@ -76,7 +78,11 @@ $(document).ready(function(){
 			});
 		},
 		error:function(xhr,status,error){
-			alert('error');
+			$('span.parcel-count').text(0);
+
+			$('.controls').addClass('hidden');
+			$('.page-loader').addClass('hidden');
+			$('.error-page').removeClass('hidden');
 		}
 	});
 	
@@ -236,7 +242,7 @@ function moveMarker(placeName, latlng) {
  		return null;
  	}
  }
-
+ var infoVisible;
  function searchParcels(query){
  	var searchSet = $('#parcel-item-container .parcel-item');
 
@@ -246,9 +252,20 @@ function moveMarker(placeName, latlng) {
  		var price = $(this).data('price').toString();
 
  		if(name.indexOf(query) != -1 || weight.indexOf(query) != -1 || price.indexOf(query) != -1 ){
- 			$(this).fadeIn(400);
+ 			if(infoVisible){
+ 				$('.no-results').hide();
+ 				infoVisible = false;
+ 			}
+ 			$(this).fadeIn(100);
  		}else{
  			$(this).fadeOut(400);
  		}
  	});
+
+ 	setTimeout(function(){
+ 		if( ! searchSet.is(':visible')){
+	 		$('.no-results').fadeIn(200);
+	 		infoVisible = true;
+	 	}
+ 	},600);
  }

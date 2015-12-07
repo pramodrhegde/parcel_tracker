@@ -53,6 +53,19 @@ section {
   }
 }
 
+.page-loader, .error-page, .no-results {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.page-loader .loader span {
+  background: #6abd19 !important;
+}
+
+.error-pic {
+  color: #D6181F;
+}
+
 .header-content {
   height: 70px;
   padding: 5px 15px;
@@ -69,8 +82,10 @@ section {
 }
 
 .logo {
+  margin-top: -5px;
   display: inline-block;
   height: 70px;
+  padding-left: 0px;
 }
 @media screen and (min-width: 640px) {
   .logo {
@@ -127,6 +142,11 @@ section {
   float: right;
   margin: 0px;
   height: 40px;
+}
+
+.dropdown.right a i {
+  position: relative;
+  right: -5px;
 }
 
 .dropdown.right ul {
